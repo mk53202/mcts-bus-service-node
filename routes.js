@@ -34,28 +34,3 @@ request( request_options )
     // Something bad happened, handle the error
     console.log( err )
   })
-
-// var url_site = "http://realtime.ridemcts.com"
-// var url_api = "/bustime/api/v1/getroutes"
-// var url_request = url_site + url_api
-
-// request(request_options)
-//   .then(function (response) {
-//     // Request was successful, use the response object at will
-//   })
-//   .catch(function (err) {
-//     // Something bad happened, handle the error
-//   })
-// querystring = {
-// 	"key":os.environ['BUSTIME_API_KEY']
-// }
-// headers = {
-// 	'cache-control': "no-cache"
-// }
-// request.get(url_request, { json: true }, (err, res, body) => {
-//   if (err) { return console.log(err); }
-//   console.log(body);
-//   // console.log(res);
-// });
-
-// console.log( url_request );
