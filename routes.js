@@ -1,4 +1,6 @@
 // https://blog.risingstack.com/node-hero-node-js-request-module-tutorial/
+// https://github.com/request/request
+// https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html
 
 // Libraries
 const config = require('dotenv').config(); // For API key .env
@@ -19,9 +21,10 @@ var request_options = {
   headers: {
     'cache-control': 'no-cache'
   },
-  json: false // the response comes back as xml, see below
+  json: false // the response comes back as xml not json, see below
 }
 
+// Make the request and process it
 request( request_options )
   .then(function (response) {  // Request was successful
     parseXML(response, function (err, result) { // from xml2js
