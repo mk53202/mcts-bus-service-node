@@ -1,14 +1,15 @@
 // https://blog.risingstack.com/node-hero-node-js-request-module-tutorial/
 
 // Libraries
-const config = require('dotenv').config(); // For API key key.env
+const config = require('dotenv').config(); // For API key .env
 const request = require('request-promise')
 const parseXML = require('xml2js').parseString
 
+// Globals
 const BUSTIME_URL = 'http://realtime.ridemcts.com/bustime/api/v1/getroutes'
-const BUSTIME_API_KEY = process.env.BUSTIME_API_KEY
+const BUSTIME_API_KEY = process.env.BUSTIME_API_KEY // Get unique key and store it in .env
 
-// Start formatting the request
+// Format and options for the request
 var request_options = {
   method: 'GET',
   uri: BUSTIME_URL,
@@ -17,20 +18,19 @@ var request_options = {
   },
   headers: {
     'cache-control': 'no-cache'
-  }
+  },
+  json: false // the response comes back as xml, see below
 }
 
 request( request_options )
-  .then(function (response) {
-    // Request was successful
-    parseXML(response, function (err, result) {
-      var my_result = result['bustime-response']['route']
-      for (var route in my_result) {
-        console.log(my_result[route]['rt']);
+  .then(function (response) {  // Request was successful
+    parseXML(response, function (err, result) { // from xml2js
+      var json_result = result['bustime-response']['route']
+      for (var route in json_result) {
+        console.log(json_result[route]['rt']);
       }
     })
   })
   .catch(function (err) {
-    // Something bad happened, handle the error
-    console.log( err )
+    console.log( err ) // Something bad happened, handle the error
   })
